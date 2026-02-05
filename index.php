@@ -7,14 +7,20 @@
     <body>
     <header>
         <h1>NetFish</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Video's</a>
-            <a href="#">Mijn Lijst</a>
-        </nav>
-    </header>
+        <div class="topnav">
+        <button class="hamburger" aria-label="Open menu">
+            ☰
+        </button>
 
-    <div class="hero">
+        <nav class="nav">
+        <a href="index.php">Home</a>
+        <a href="videos.php">Video's</a>
+        <a href="mijnLijst.php">Mijn Lijst</a>
+        <a href="login.php">Login</a>
+        </nav>
+        </header>
+
+    <div class="head">
         <h2>Top Videos</h2>
     </div>
 
@@ -22,18 +28,19 @@
         <h3>Populaire Video's</h3>
         <div class="row-container">
             <div class="video-card">
-                <img src="https://via.placeholder.com/200x120" alt="Video 1">
+                <img src="images/img 1.jpg" alt="Video 1" height="150px" width="150px">
                 <h4>Video 1</h4>
             </div>
             <div class="video-card">
-                <img src="https://via.placeholder.com/200x120" alt="Video 2">
+                <img src="images/image 2.jpg" alt="Video 2" height="150px" width="150px">
                 <h4>Video 2</h4>
             </div>
             <div class="video-card">
-                <img src="https://via.placeholder.com/200x120" alt="Video 3">
+                <img src="images/image 3.jpg" alt="Video 3" height="150px" width="150px">
                 <h4>Vidoe 3</h4>
             </div>
         </div>
     </div>
+    <script src="js/script.js"></script>
 </body>
 </html>

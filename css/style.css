@@ -1,4 +1,3 @@
-/* Algemene stijl */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -6,7 +5,6 @@
             color: #fff;
         }
 
-        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -32,22 +30,19 @@
             color: #e50914;
         }
 
-        /* Banner / Hero */
-        .hero {
+        .head {
             position: relative;
             height: 400px;
-            background: url('https://via.placeholder.com/1200x400') center/cover no-repeat;
             display: flex;
             align-items: flex-end;
             padding: 20px;
         }
 
-        .hero h2 {
+        .head h2 {
             font-size: 36px;
             margin: 0;
         }
 
-        /* Videorijen */
         .row {
             margin: 20px 40px;
         }
@@ -67,7 +62,6 @@
             min-width: 200px;
             background-color: #222;
             border-radius: 8px;
-            overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s;
         }
@@ -83,11 +77,36 @@
             margin: 0;
         }
 
-        .video-card:hover {
-            transform: scale(1.05);
-        }
 
-        /* Scrollbar verbergen */
-        .row-container::-webkit-scrollbar {
-            display: none;
-        }
+.hamburger {
+    display: none;
+}
+
+.nav {
+    display: flex;
+}
+
+/* Mobile screens */
+@media only screen and (max-width: 600px) {
+    .example {
+        background: red;
+    }
+
+    body {
+        color: #c61818;
+    }
+
+    .nav {
+        display: none; /* hide full menu */
+        flex-direction: column;
+    }
+
+    .hamburger {
+        display: block; /* show hamburger */
+    }
+
+    /* Optional: show menu when active */
+    .nav.open {
+        display: flex;
+    }
+}

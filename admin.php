@@ -22,15 +22,15 @@
         <h3>Populaire Video's</h3>
         <div class="row-container">
             <div class="video-card">
-                <img src="https://via.placeholder.com/200x120" alt="Video 1">
+                <img src="" alt="Video 1">
                 <h4>Video 1</h4>
             </div>
             <div class="video-card">
-                <img src="https://via.placeholder.com/200x120" alt="Video 2">
+                <img src="" alt="Video 2">
                 <h4>Video 2</h4>
             </div>
             <div class="video-card">
-                <img src="https://via.placeholder.com/200x120" alt="Video 3">
+                <img src="" alt="Video 3">
                 <h4>Vidoe 3</h4>
             </div>
         </div>
