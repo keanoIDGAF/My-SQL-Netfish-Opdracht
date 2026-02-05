@@ -86,7 +86,7 @@
     display: flex;
 }
 
-/* Mobile screens */
+/* mobile hamburger menu show */
 @media only screen and (max-width: 600px) {
     .example {
         background: red;
