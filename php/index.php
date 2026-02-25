@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <body>
     <header>
         <h1>NetFish</h1>
@@ -28,15 +28,15 @@
         <h3>Populaire Video's</h3>
         <div class="row-container">
             <div class="video-card">
-                <img src="images/img 1.jpg" alt="Video 1" height="150px" width="150px">
+                <img src="../images/img 1.jpg" alt="Video 1" height="150px" width="150px">
                 <h4>Video 1</h4>
             </div>
             <div class="video-card">
-                <img src="images/image 2.jpg" alt="Video 2" height="150px" width="150px">
+                <img src="../images/image 2.jpg" alt="Video 2" height="150px" width="150px">
                 <h4>Video 2</h4>
             </div>
             <div class="video-card">
-                <img src="images/image 3.jpg" alt="Video 3" height="150px" width="150px">
+                <img src="../images/image 3.jpg" alt="Video 3" height="150px" width="150px">
                 <h4>Vidoe 3</h4>
             </div>
         </div>
