@@ -12,37 +12,45 @@
     <h1>NETFISH</h1>
     <nav class="nav">
         <a href="index.php">Home</a>
-        <a href="#">Series</a>
-        <a href="#">Films</a>
+        <a href="videos.php">Video's</a>
+        <a href="mijnLijst.php">Mijn Lijst</a>
+        <a href="login.php">Login</a>
     </nav>
     <div class="hamburger">☰</div>
 </header>
 
 <div class="video-wrapper">
-    <?php
+<?php
 require_once '../php/connectdb.php'; 
 
+// 1. Controleer of er een ID is meegegeven in de URL, anders standaard naar id 1
+$videoId = isset($_GET['id']) ? (int)$_GET['id'] : 1;
+
 try {
-    $stmt = $conn->query("SELECT * FROM videos WHERE id=1;"); 
-    $videos = $stmt->fetchAll();
+    // 2. Gebruik een placeholder (?) om SQL-injection te voorkomen
+    $stmt = $conn->prepare("SELECT * FROM videos WHERE id = ?"); 
+    $stmt->execute([$videoId]);
+    $video = $stmt->fetch();
 
-    foreach ($videos as $video) {
-    echo "<h3>" . htmlspecialchars($video['title']) . "</h3>";
-    
-    // Pas hier het pad aan naar de map waar je video's ECHT staan
-    // Bijvoorbeeld: "videos/" . $video['link']
-    $videoPath = "../videos/" . $video['link']; 
+    // 3. Controleer of de video wel bestaat in de database
+    if ($video) {
+        echo "<h3>" . htmlspecialchars($video['title']) . "</h3>";
+        
+        $videoPath = "../videos/" . $video['link']; 
 
-    echo "<video width='400' controls>";
-    echo "<source src='" . htmlspecialchars($videoPath) . "' type='video/mp4'>";
-    echo "Je browser ondersteunt de video tag niet.";
-    echo "</video>";
-    echo "<br><hr>";
-}
+        echo "<video width='100%' controls autoplay>";
+        echo "<source src='" . htmlspecialchars($videoPath) . "' type='video/mp4'>";
+        echo "Je browser ondersteunt de video tag niet.";
+        echo "</video>";
+    } else {
+        echo "<p>Video niet gevonden.</p>";
+    }
+
 } catch(PDOException $e) {
-    echo "Fout bij ophalen videos: " . $e->getMessage();
+    echo "Fout bij ophalen video: " . $e->getMessage();
 }
 ?>
+</div>
 
 </div>
 
