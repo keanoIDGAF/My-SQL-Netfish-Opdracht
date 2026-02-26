@@ -35,10 +35,11 @@ try {
     // 3. Controleer of de video wel bestaat in de database
     if ($video) {
         echo "<h3>" . htmlspecialchars($video['title']) . "</h3>";
+        echo "<h5>" . htmlspecialchars($video['beschrijving']) . "</h5>";
         
         $videoPath = "../videos/" . $video['link']; 
 
-        echo "<video width='100%' controls autoplay>";
+        echo "<video width='100%' controls autoplay muted>";
         echo "<source src='" . htmlspecialchars($videoPath) . "' type='video/mp4'>";
         echo "Je browser ondersteunt de video tag niet.";
         echo "</video>";
