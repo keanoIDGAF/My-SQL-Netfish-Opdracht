@@ -14,7 +14,7 @@
         <a href="index.php">Home</a>
         <a href="videos.php">Video's</a>
         <a href="mijnLijst.php">Mijn Lijst</a>
-        <a href="login.php">Login</a>
+        <a href="../login&register/login.php">Login</a>
     </nav>
     <div class="hamburger">☰</div>
 </header>
