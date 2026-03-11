@@ -1,5 +1,4 @@
 <?php
-// 1. Database verbinding
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,7 +10,6 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // 2. Controleren of het formulier is verzonden
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $length = $_POST['length'];
@@ -34,7 +32,6 @@ try {
         $stmt->bindParam(':beschrijving', $beschrijving);
 
         if ($stmt->execute()) {
-            // Haal het nieuwe ID op om te laten zien
             $new_id = $conn->lastInsertId();
             $message = "Video succesvol toegevoegd met ID: " . $new_id;
             header("refresh:2;url=../admin/admin.php");
@@ -52,7 +49,6 @@ try {
     <title>NetFish - Video Toevoegen</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        /* NetFish thema styling */
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
             background-color: #141414; 
@@ -103,10 +99,23 @@ try {
             margin-top: 10px;
             transition: 0.3s;
         }
-        .btn-submit:hover { background-color: #b20710; }
+        .btn-submit:hover { 
+            background-color: #b20710; 
+        }
         
-        .back-link { display: block; margin-top: 20px; color: #aaa; text-decoration: none; text-align: center; font-size: 14px; }
-        .back-link:hover { color: #fff; text-decoration: underline; }
+        .back-link { 
+            display: block; 
+            margin-top: 20px; 
+            color: #aaa; 
+            text-decoration: none; 
+            text-align: center; 
+            font-size: 14px; 
+        }
+
+        .back-link:hover { 
+            color: #fff; 
+            text-decoration: underline; 
+        }
         
         .msg { 
             background: rgba(46, 204, 113, 0.2); 

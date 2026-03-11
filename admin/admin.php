@@ -8,7 +8,6 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // READ: Data ophalen
     $stmt = $conn->prepare("SELECT * FROM videos");
     $stmt->execute();
 ?>
@@ -60,14 +59,13 @@ try {
                     <td><?= htmlspecialchars($rows['beschrijving']) ?></td>
                     <td>
                         <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-edit">Edit</a>
-                        <a href="delete.php?id=<?= $rows['id'] ?>" class="btn btn-delete" onclick="return confirm('Weet je zeker?')">Wis</a>
+                        <a href="delete.php?id=<?= $rows['id'] ?>" class="btn btn-delete" onclick="return confirm('Weet je het zeker dat je deze video wilt verwijderen?')">Vewijder</a>
                     </td>
                 </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
-
     <script src="js/script.js"></script>
 </body>
 </html>

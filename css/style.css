@@ -1,242 +1,339 @@
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #141414;
-            color: #fff;
-        }
+/* --- Algemene Basis Styling --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #141414;
+    color: #fff;
+    min-height: 100vh;
+}
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background-color: #1f1f1f;
-        }
+/* Gebruik deze class op <body> voor pagina's met alleen een formulier (zoals login/toevoegen) */
+.form-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #e50914;
-        }
+/* --- Header & Navigatie --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #1f1f1f;
+}
 
-        header nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #e50914;
+}
 
-        header nav a:hover {
-            color: #e50914;
-        }
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
 
-        .head {
-            position: relative;
-            height: 400px;
-            display: flex;
-            align-items: flex-end;
-            padding: 20px;
-        }
-
-        .head h2 {
-            font-size: 36px;
-            margin: 0;
-        }
-
-        .row {
-            margin: 20px 40px;
-        }
-
-        .row h3 {
-            margin-bottom: 10px;
-        }
-
-        .row-container {
-            display: grid;
-            /* Dit maakt 4 kolommen die elk even breed zijn */
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 20px;
-            padding: 20px 40px;
-        }
-
-        .video-card {
-            background-color: #222;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s;
-            width: 100%; /* Zorgt dat de kaart de kolom vult */
-        }
-
-        .video-card img {
-            width: 100%;    /* Afbeelding vult de volledige breedte van de card */
-            height: auto;   /* Behoud de verhouding */
-            display: block;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .video-card h4 {
-            padding: 10px;
-            font-size: 16px;
-            margin: 0;
-        }
-
+header nav a:hover {
+    color: #e50914;
+}
 
 .hamburger {
     display: none;
+    cursor: pointer;
 }
 
-.nav {
+/* --- Video Overzicht (Grid) --- */
+.head {
+    position: relative;
+    height: 400px;
     display: flex;
+    align-items: flex-end;
+    padding: 20px;
 }
 
-/* mobile hamburger menu show */
+.head h2 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.row-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+    padding: 20px 40px;
+}
+
+.video-card {
+    background-color: #222;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    width: 100%;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
+}
+
+.video-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px 8px 0 0;
+}
+
+.video-card h4 {
+    padding: 10px;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* --- Video Player Pagina --- */
+.video-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+video {
+    max-width: 90%;
+    border: 2px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    outline: none;
+}
+
+/* --- Admin Overzicht & Tabellen --- */
+.admin-container {
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+th {
+    background-color: #333;
+    color: #e5e5e5;
+    text-align: left;
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #333;
+    color: #ccc;
+}
+
+tr:hover {
+    background-color: #282828;
+}
+
+/* --- Formulier Styling (Toevoegen/Bewerken/Login) --- */
+.form-container { 
+    background: #1f1f1f; 
+    padding: 40px; 
+    border-radius: 8px; 
+    width: 100%; 
+    max-width: 450px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    margin: 40px auto;
+}
+
+.form-container h2 { 
+    color: #e50914; 
+    margin-top: 0; 
+    font-size: 24px; 
+    text-align: center; 
+}
+
+input, textarea { 
+    width: 100%; 
+    padding: 12px; 
+    margin: 10px 0; 
+    border: 1px solid #333; 
+    background: #333; 
+    color: white; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    font-size: 16px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #e50914;
+}
+
+/* --- Knoppen & Acties --- */
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-submit, .btn-add, .btn-delete {
+    background-color: #e50914;
+}
+
+.btn-submit:hover, .btn-add:hover, .btn-delete:hover {
+    background-color: #b20710;
+}
+
+.btn-edit {
+    background-color: #555;
+}
+
+.btn-edit:hover {
+    background-color: #4a90e2;
+}
+
+.btn-submit {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* --- Meldingen & Links --- */
+.msg { 
+    background: rgba(46, 204, 113, 0.2); 
+    color: #2ecc71; 
+    padding: 10px; 
+    border-radius: 4px; 
+    text-align: center; 
+    margin-bottom: 20px; 
+}
+
+.back-link { 
+    display: block; 
+    margin-top: 20px; 
+    color: #aaa; 
+    text-decoration: none; 
+    text-align: center; 
+    font-size: 14px; 
+}
+
+.back-link:hover { 
+    color: #fff; 
+    text-decoration: underline; 
+}
+
+/* --- Media Queries (Responsive) --- */
+@media only screen and (max-width: 900px) {
+    .row-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media only screen and (max-width: 600px) {
+    header { padding: 20px; }
+
     .nav {
-        display: none; /* hide full menu */
+        display: none;
         flex-direction: column;
     }
 
     .hamburger {
-        display: block; /* show hamburger */
+        display: block;
     }
 
-    /* Optional: show menu when active */
     .nav.open {
         display: flex;
     }
 
-    @media only screen and (max-width: 900px) {
-        .row-container {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    .row-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
     }
 
-        @media only screen and (max-width: 500px) {
-        .row-container {
-            grid-template-columns: 1fr;
-        }
+    table {
+        font-size: 12px;
+    }
+
+    .admin-container {
+        padding: 10px;
     }
 }
 
-.video-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 50px 20px;
-        }
+.modal-overlay {
+    display: none; /* Standaard verborgen */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Donkere overlay */
+    backdrop-filter: blur(5px); /* Maakt de achtergrond wazig */
+    align-items: center;
+    justify-content: center;
+}
 
-        video {
-            max-width: 90%;
-            border: 2px solid #333;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            outline: none;
-        }
+.modal-content {
+    background-color: #1f1f1f;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    border: 1px solid #333;
+    box-shadow: 0 10px 50px rgba(0,0,0,1);
+    animation: modalFadeIn 0.3s ease;
+}
 
-        .video-info {
-            margin-top: 20px;
-            text-align: center;
-        }
+@keyframes modalFadeIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
-        .video-info h2 {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
+.modal-header h2 {
+    margin: 10px 0;
+    color: #fff;
+    font-size: 22px;
+}
 
-        @media only screen and (max-width: 600px) {
-            header { padding: 20px; }
-            video { width: 100%; }
-        }
+.warning-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}
 
-        .admin-container {
-            padding: 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+.modal-content p {
+    color: #aaa;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
 
-        h2 {
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
 
-        /* Tabel Styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #1f1f1f;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+.btn-cancel {
+    background-color: #444;
+}
 
-        th {
-            background-color: #333;
-            color: #e5e5e5;
-            text-align: left;
-            padding: 15px;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
-
-        td {
-            padding: 15px;
-            border-bottom: 1px solid #333;
-            color: #ccc;
-        }
-
-        tr:hover {
-            background-color: #282828;
-        }
-
-        /* Knoppen */
-        .btn {
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            color: white;
-            font-size: 0.85rem;
-            font-weight: bold;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .btn-edit {
-            background-color: #555;
-            margin-right: 5px;
-        }
-
-        .btn-edit:hover {
-            background-color: #4a90e2;
-        }
-
-        .btn-delete {
-            background-color: #e50914;
-        }
-
-        .btn-delete:hover {
-            background-color: #b20710;
-        }
-
-        .btn-add {
-            background-color: #e50914;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 25px;
-            transition: background 0.3s;
-        }
-
-        .btn-add:hover {
-            background-color: #b20710;
-        }
-
-        @media only screen and (max-width: 600px) {
-            header { padding: 20px; }
-            .admin-container { padding: 20px; }
-            table { font-size: 12px; }
-        }
+.btn-cancel:hover {
+    background-color: #555;
+}
