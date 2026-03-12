@@ -337,3 +337,16 @@ input:focus, textarea:focus {
 .btn-cancel:hover {
     background-color: #555;
 }
+
+.btn-add {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.admin-container h2 {
+    display: inline-block;
+}
+
+.btn-add {
+    float: right;
+}

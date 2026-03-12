@@ -33,7 +33,7 @@ try {
         <h2>Videos editor</h2>
         <h4>Edit, Add, or Delete videos for the Homepage</h4>
         
-        <a href="create.php" class="btn-add">+ Nieuwe Video Toevoegen</a>
+        <a href="create.php" class="btn btn-add">+ Nieuwe Video Toevoegen</a>
 
         <table>
             <thead>
@@ -66,7 +66,7 @@ try {
             </tbody>
         </table>
     </div>
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>
 <?php
