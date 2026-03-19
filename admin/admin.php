@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// 1. SECURITY CHECK: If not logged in or not an admin, kick them out
+if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != 1) {
+    header("Location: ../login&register/login.php");
+    exit;
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -17,6 +25,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netfish Admin - Video Editor</title>
     <link rel="stylesheet" href="../css/style.css">
     <style>
         /* Styles for the Modal */
@@ -68,14 +77,15 @@ try {
             <a href="../php/index.php">Home</a>
             <a href="../php/videos.php">Video's</a>
             <a href="../php/mijnLijst.php">Mijn Lijst</a>
-            <a href="../login&register/login.php">Login</a>
+            <span style="color: #ccc; margin-left: 15px;">Admin: <?= htmlspecialchars($_SESSION['user']) ?></span>
+            <a href="logout.php">Logout</a>
         </nav>
     </header>
  
     <div class="admin-container">
         <h2>Videos editor</h2>
         <h4>Edit, Add, or Delete videos for the Homepage</h4>
-       
+        
         <a href="create.php" class="btn btn-add">+ Nieuwe Video Toevoegen</a>
  
         <table>
@@ -103,7 +113,7 @@ try {
                     <td><?= htmlspecialchars($rows['beschrijving']) ?></td>
                     <td>
                         <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-edit">Edit</a>
-                       
+                        
                         <button type="button"
                                 class="btn btn-delete"
                                 onclick="openModal('delete.php?id=<?= $rows['id'] ?>')">
@@ -137,7 +147,6 @@ try {
             document.getElementById('deleteModal').style.display = 'none';
         }
  
-        // Close if you click outside the box
         window.onclick = function(event) {
             let modal = document.getElementById('deleteModal');
             if (event.target == modal) {
