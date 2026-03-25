@@ -17,8 +17,6 @@ session_start();
             <button class="hamburger" aria-label="Open menu">☰</button>
             <nav class="nav">
                 <a href="index.php">Home</a>
-                <a href="videos.php">Video's</a>
-                <a href="mijnLijst.php">Mijn Lijst</a>
 
                 <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1): ?>
                     <a href="../admin/admin.php" style="color: #e50914; font-weight: bold;">Admin Panel</a>

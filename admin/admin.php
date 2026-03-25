@@ -1,9 +1,12 @@
 <?php
 session_start();
 
-// 1. SECURITY CHECK: If not logged in or not an admin, kick them out
+// SECURITY CHECK: Controleer of de gebruiker admin-rechten heeft
+// Als de sessie-variabele 'isAdmin' niet bestaat of niet gelijk is aan 1:
 if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != 1) {
+    // Stuur de gebruiker direct terug naar de loginpagina
     header("Location: ../login&register/login.php");
+    // Stop het script hier, zodat de rest van de pagina niet geladen wordt voor onbevoegden
     exit;
 }
 
@@ -13,11 +16,16 @@ $password = "";
 $dbname = "netfish";
  
 try {
+    // Maakt verbinding met de database met behulp van PDO
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    
+    // Zorgt dat foutmeldingen van de database als uitzonderingen (exceptions) worden getoond
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  
-    // READ: Data ophalen
+    // Voorbereiden van de SQL-query om alle video's uit de tabel op te halen
     $stmt = $conn->prepare("SELECT * FROM videos");
+    
+    // Voert de query uit
     $stmt->execute();
 ?>
 <!DOCTYPE html>
@@ -75,10 +83,8 @@ try {
         <h1>NetFish</h1>
         <nav>
             <a href="../php/index.php">Home</a>
-            <a href="../php/videos.php">Video's</a>
-            <a href="../php/mijnLijst.php">Mijn Lijst</a>
             <span style="color: #ccc; margin-left: 15px;">Admin: <?= htmlspecialchars($_SESSION['user']) ?></span>
-            <a href="logout.php">Logout</a>
+            <a href="../login%register/logout.php">Logout</a>
         </nav>
     </header>
  

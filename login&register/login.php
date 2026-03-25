@@ -1,29 +1,39 @@
 <?php
 session_start();
+
+// Haalt het databaseverbindingsbestand op
 require_once '../php/connectdb.php';
 
+// Controleert of de gebruiker op de 'Login' knop heeft gedrukt (POST-methode)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Haal de ingevulde gebruikersnaam en wachtwoord op (gebruik leeg als ze niet zijn ingevuld)
     $user = $_POST['username'] ?? '';
     $pass = $_POST['password'] ?? '';
 
+    // Zoekt de gebruiker in de database op basis van de gebruikersnaam
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute([$user]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    // Controleert of de gebruiker bestaat EN of het wachtwoord klopt (gehasht vergeleken)
     if ($row && password_verify($pass, $row['password'])) {
+        // Sla de gebruikersnaam op in de sessie
         $_SESSION['user'] = $row['username'];
         
-        // Save the admin status in the session (0 or 1)
+        // Slaat de admin-status op in de sessie (0 voor normale gebruiker, 1 voor admin)
         $_SESSION['isAdmin'] = $row['isAdmin'];
 
+        // Stuurt de gebruiker door naar de index-pagina (voor zowel admin als user in dit geval)
         if ($_SESSION['isAdmin'] == 1) {
             header("Location: ../php/index.php");
         } else {
             header("Location: ../php/index.php");
         }
+        // Stopt het uitvoeren van het script na de redirect
         exit;
     } 
     
+    // Als de gegevens niet kloppen, vul de error-variabele
     $error = "Invalid username or password.";
 }
 ?>
@@ -173,8 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>NetFish</h1>
     <nav class="nav">
         <a href="../php/index.php">Home</a>
-        <a href="../php/videos.php">Video's</a>
-        <a href="../php/mijnLijst.php">Mijn Lijst</a>
         <a href="../login&register/login.php">Login</a>
     </nav>
 </header>

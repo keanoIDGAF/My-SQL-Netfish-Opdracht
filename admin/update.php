@@ -1,22 +1,40 @@
 <?php
+// Maakt verbinding met de database
 $conn = new PDO("mysql:host=localhost;dbname=netfish", "root", "");
+// Zorgt dat databasefouten zichtbaar worden als uitzonderingen
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+// De bestaande gegevens ophalen om in het formulier te tonen
+// Haalt het ID op uit de URL (bijv. edit.php?id=12)
 $id = $_GET['id'] ?? null;
+
 if ($id) {
+    // Zoekt de video op in de database op basis van het ID
     $stmt = $conn->prepare("SELECT * FROM videos WHERE id = ?");
     $stmt->execute([$id]);
     $video = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    // Als de video niet bestaat in de database, stop het script
     if (!$video) die("Video niet gevonden.");
 }
 
+// De gewijzigde gegevens opslaan na het versturen van het formulier
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Bereidt de UPDATE-query voor om de bestaande rij aan te passen
     $sql = "UPDATE videos SET length=?, title=?, leeftijd=?, link=?, genre=?, beschrijving=? WHERE id=?";
+    
+    // Voert de query uit met de nieuwe gegevens uit het formulier ($_POST)
     $conn->prepare($sql)->execute([
-        $_POST['length'], $_POST['title'], $_POST['leeftijd'], 
-        $_POST['link'], $_POST['genre'], $_POST['beschrijving'], $_POST['id']
+        $_POST['length'], 
+        $_POST['title'], 
+        $_POST['leeftijd'], 
+        $_POST['link'], 
+        $_POST['genre'], 
+        $_POST['beschrijving'], 
+        $_POST['id']
     ]);
 
+    // Stuurt de gebruiker terug naar het overzicht met een succesmelding
     header("Location: admin.php?msg=aangepast");
     exit();
 }

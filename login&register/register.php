@@ -1,18 +1,33 @@
 <?php
+// Haalt de databaseverbinding op
 require_once '../php/connectdb.php';
+
+// Maakt een lege variabele aan voor statusberichten
 $message = "";
 
+// Controleert of de gebruiker het formulier heeft verstuurd (POST-methode)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Haalt de ingevoerde gebruikersnaam en het wachtwoord op
+    // De ?? '' zorgt ervoor dat de variabele leeg blijft als er niets is ingevuld
     $user = $_POST['username'] ?? '';
     $pass = $_POST['password'] ?? '';
 
+    // Controleert of beide velden niet leeg zijn
     if (!empty($user) && !empty($pass)) {
         try {
+            // Bereidt de SQL-query voor om een nieuwe gebruiker in te voegen
             $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
             $stmt = $conn->prepare($sql);
+            
+            // Voert de query uit
+            // Belangrijk: password_hash versleutelt het wachtwoord voordat het de database in gaat
             $stmt->execute([$user, password_hash($pass, PASSWORD_DEFAULT)]);
             
+            // stuurt een succesbericht 
+            $message = "Account succesvol aangemaakt!";
+            
         } catch (PDOException $e) {
+            // Als er iets misgaat, vang de fout op
             $message = "Error: Username might already exist.";
         }
     }
@@ -161,8 +176,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>NetFish</h1>
     <nav class="nav">
         <a href="../php/index.php">Home</a>
-        <a href="../php/videos.php">Video's</a>
-        <a href="../php/mijnLijst.php">Mijn Lijst</a>
         <a href="../login&register/login.php">Login</a>
     </nav>
 </header>

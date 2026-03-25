@@ -1,17 +1,24 @@
 <?php
+// Database verbindingsgegevens
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "netfish";
 
+// Variabele om statusberichten in op te slaan
 $message = ""; 
 
 try {
+    // Maakt een nieuwe databaseverbinding met PDO
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    
+    // Stelt de foutmelding-modus in op 'Exception', zodat we fouten kunnen opvangen
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // Controleert of het formulier is verstuurd via de POST-methode
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
+        // Haalt de gegevens op uit het verzonden formulier
         $length = $_POST['length'];
         $title = $_POST['title'];
         $leeftijd = $_POST['leeftijd'];
@@ -19,11 +26,14 @@ try {
         $genre = $_POST['genre'];
         $beschrijving = $_POST['beschrijving'];
 
+        // Bereid de SQL query voor met placeholders (:placeholder) tegen SQL-injectie
         $sql = "INSERT INTO videos (length, title, leeftijd, link, genre, beschrijving) 
                 VALUES (:length, :title, :leeftijd, :link, :genre, :beschrijving)";
         
+        // Maak de query klaar voor uitvoering
         $stmt = $conn->prepare($sql);
         
+        // Koppelt de formulierwaarden aan de SQL placeholders
         $stmt->bindParam(':length', $length);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':leeftijd', $leeftijd);
@@ -31,13 +41,18 @@ try {
         $stmt->bindParam(':genre', $genre);
         $stmt->bindParam(':beschrijving', $beschrijving);
 
+        // Voert de query uit
         if ($stmt->execute()) {
+            // Haal het ID op van de zojuist toegevoegde video
             $new_id = $conn->lastInsertId();
             $message = "Video succesvol toegevoegd met ID: " . $new_id;
+            
+            // Wacht 2 seconden en stuur de gebruiker dan terug naar de admin-pagina
             header("refresh:2;url=../admin/admin.php");
         }
     }
 } catch (PDOException $e) {
+    // Als er iets misgaat met de verbinding, vang de fout op en toon deze
     $message = "Fout: " . $e->getMessage();
 }
 ?>

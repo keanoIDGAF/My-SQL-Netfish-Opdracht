@@ -21,17 +21,24 @@
 
 <div class="video-wrapper">
 <?php
+// Haal de databaseverbinding op
 require_once '../php/connectdb.php'; 
 
+// Haalt het ID uit de URL (bijv. watch.php?id=3)
+// De (int) zorgt ervoor dat het altijd een getal is (veiligheid tegen tekst-injecties)
+// Als er geen ID is, wordt standaard video 1 gekozen
 $videoId = (int)($_GET['id'] ?? 1);
 
 try {
+    // Zoekt de video in de database die hoort bij het opgevraagde ID
     $stmt = $conn->prepare("SELECT * FROM videos WHERE id = ?"); 
     $stmt->execute([$videoId]);
     $video = $stmt->fetch();
 
+    // Controleert of er daadwerkelijk een video is gevonden
     if ($video): ?>
         <h3><?= htmlspecialchars($video['title']) ?></h3>
+        
         <h5><?= htmlspecialchars($video['beschrijving']) ?></h5>
         
         <video width="100%" controls autoplay muted>
@@ -44,6 +51,7 @@ try {
     <?php endif;
 
 } catch(PDOException $e) {
+    // Toont een foutmelding als de database-query mislukt
     echo "Fout: " . $e->getMessage();
 }
 ?>
