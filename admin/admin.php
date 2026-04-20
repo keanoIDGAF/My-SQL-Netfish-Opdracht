@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// SECURITY CHECK: Controleer of de gebruiker admin-rechten heeft
+// Controleert of de gebruiker admin-rechten heeft
 // Als de sessie-variabele 'isAdmin' niet bestaat of niet gelijk is aan 1:
 if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != 1) {
     // Stuur de gebruiker direct terug naar de loginpagina
@@ -19,7 +19,7 @@ try {
     // Maakt verbinding met de database met behulp van PDO
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     
-    // Zorgt dat foutmeldingen van de database als uitzonderingen (exceptions) worden getoond
+    // Zorgt dat foutmeldingen van de database als uitzonderingen worden getoond
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  
     // Voorbereiden van de SQL-query om alle video's uit de tabel op te halen

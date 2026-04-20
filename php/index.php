@@ -41,7 +41,7 @@ session_start();
 
         try {
             // Check if $conn exists (from connectdb.php)
-            $videos = $conn->query("SELECT id, title, link FROM videos")->fetchAll(PDO::FETCH_ASSOC);
+           = $conn->query $videos ("SELECT id, title, link FROM videos")->fetchAll(PDO::FETCH_ASSOC);
 
             if ($videos):
                 foreach ($videos as $video):

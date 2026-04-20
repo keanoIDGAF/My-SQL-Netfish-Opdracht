@@ -24,8 +24,8 @@
 // Haal de databaseverbinding op
 require_once '../php/connectdb.php'; 
 
-// Haalt het ID uit de URL (bijv. watch.php?id=3)
-// De (int) zorgt ervoor dat het altijd een getal is (veiligheid tegen tekst-injecties)
+// Haalt het ID uit de URL (bijvoorbeeld watch.php?id=3)
+// De (int) zorgt ervoor dat het altijd een getal is
 // Als er geen ID is, wordt standaard video 1 gekozen
 $videoId = (int)($_GET['id'] ?? 1);
 

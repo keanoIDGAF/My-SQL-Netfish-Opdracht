@@ -13,7 +13,6 @@ if ($id) {
         $stmt = $conn->prepare("DELETE FROM videos WHERE id = ?");
         $stmt->execute([$id]);
 
-        // probeert de AUTO_INCREMENT te resetten
         // Dit vult geen gaten in je ID-lijst op, maar zorgt dat de volgende
         // nieuwe video het eerstvolgende logische nummer krijgt.
         $conn->query("ALTER TABLE videos AUTO_INCREMENT = 1");
